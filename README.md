@@ -1,2 +1,13 @@
 # finumber
-prints a number in Finnish
+Prints an integer between -10<sup>126</sup>…10<sup>126</sup>, exclusive, in Finnish.
+Developed with Python 3 under 64-bit Windows.
+
+## example
+
+### input
+
+``python finumber.py -888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888``
+
+### output
+
+``miinus kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan vigintiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan undevigintiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan duodevigintiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan septendekiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan sedekiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan kvindekiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan kvattuordekiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan tredekiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan duodekiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan undekiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan dekiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan noviljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan oktiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan septiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan sekstiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan kvintiljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan kvadriljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan triljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan biljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan miljardia kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan miljoonaa kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan·tuhatta kahdeksan·sataa·kahdeksan·kymmentä·kahdeksan``
