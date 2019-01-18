@@ -7,17 +7,17 @@ DIGITS = {
     1: "yksi",
     2: "kaksi",
     3: "kolme",
-    4: "nelj\u00e4",
+    4: "neljä",
     5: "viisi",
     6: "kuusi",
-    7: "seitsem\u00e4n",
+    7: "seitsemän",
     8: "kahdeksan",
-    9: "yhdeks\u00e4n",
+    9: "yhdeksän",
 }
 
 # in nominative and partitive
 POWERS_OF_TEN = {
-    1: ("kymmenen", "kymment\u00e4"),
+    1: ("kymmenen", "kymmentä"),
     2: ("sata", "sataa"),
 }
 
