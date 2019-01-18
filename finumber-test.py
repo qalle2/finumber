@@ -9,35 +9,35 @@ TESTS = {
 
     1: "yksi",
     2: "kaksi",
-    9: "yhdeks\u00e4n",
+    9: "yhdeksän",
 
     10: "kymmenen",
     11: "yksitoista",
     12: "kaksitoista",
-    19: "yhdeks\u00e4ntoista",
+    19: "yhdeksäntoista",
 
-    20: "kaksikymment\u00e4",
-    21: "kaksikymment\u00e4yksi",
-    22: "kaksikymment\u00e4kaksi",
-    29: "kaksikymment\u00e4yhdeks\u00e4n",
-    99: "yhdeks\u00e4nkymment\u00e4yhdeks\u00e4n",
+    20: "kaksikymmentä",
+    21: "kaksikymmentäyksi",
+    22: "kaksikymmentäkaksi",
+    29: "kaksikymmentäyhdeksän",
+    99: "yhdeksänkymmentäyhdeksän",
 
     100: "sata",
     101: "satayksi",
     102: "satakaksi",
     110: "satakymmenen",
     111: "satayksitoista",
-    120: "satakaksikymment\u00e4",
-    123: "satakaksikymment\u00e4kolme",
-    199: "satayhdeks\u00e4nkymment\u00e4yhdeks\u00e4n",
+    120: "satakaksikymmentä",
+    123: "satakaksikymmentäkolme",
+    199: "satayhdeksänkymmentäyhdeksän",
 
     200: "kaksisataa",
     201: "kaksisataayksi",
     202: "kaksisataakaksi",
     210: "kaksisataakymmenen",
     211: "kaksisataayksitoista",
-    234: "kaksisataakolmekymment\u00e4nelj\u00e4",
-    999: "yhdeks\u00e4nsataayhdeks\u00e4nkymment\u00e4yhdeks\u00e4n",
+    234: "kaksisataakolmekymmentäneljä",
+    999: "yhdeksänsataayhdeksänkymmentäyhdeksän",
 
     1000: "tuhat",
     1001: "tuhat yksi",
@@ -48,13 +48,13 @@ TESTS = {
     1101: "tuhat satayksi",
     1110: "tuhat satakymmenen",
     1111: "tuhat satayksitoista",
-    1234: "tuhat kaksisataakolmekymment\u00e4nelj\u00e4",
-    1999: "tuhat yhdeks\u00e4nsataayhdeks\u00e4nkymment\u00e4yhdeks\u00e4n",
+    1234: "tuhat kaksisataakolmekymmentäneljä",
+    1999: "tuhat yhdeksänsataayhdeksänkymmentäyhdeksän",
 
     2000: "kaksituhatta",
     2001: "kaksituhatta yksi",
     2003: "kaksituhatta kolme",
-    2345: "kaksituhatta kolmesataanelj\u00e4kymment\u00e4viisi",
+    2345: "kaksituhatta kolmesataaneljäkymmentäviisi",
 
     1_000_000: "miljoona",
     1_000_001: "miljoona yksi",
@@ -81,6 +81,8 @@ TESTS = {
 
     1_000_000_000_000_000: "tuhat biljoonaa",
     1_001_000_000_000_000: "tuhat yksi biljoonaa",
+
+    2_000_003_004_005_006_007: "kaksi triljoonaa kolme biljoonaa neljä miljardia viisi miljoonaa kuusituhatta seitsemän",
 
     1_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000: "vigintiljoona",
 }
