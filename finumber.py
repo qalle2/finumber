@@ -55,11 +55,11 @@ Argument: an integer between -10**126 and 10**126, exclusive.
 You can use spaces or underscores ("_") as thousands separators.\
 """
 
-def _less_than_ten(n: int) -> str:
+def _less_than_ten(n):
     """n: 1-9"""
     return DIGITS[n]
 
-def _power_of_ten(multiple: int, exponent: int) -> str:
+def _power_of_ten(multiple, exponent):
     """multiple: 1-9, exponent: 1-2"""
     parts = []
     if multiple > 1:
@@ -67,7 +67,7 @@ def _power_of_ten(multiple: int, exponent: int) -> str:
     parts.append(POWERS_OF_TEN[exponent][0 if multiple == 1 else 1])
     return "".join(parts)
 
-def _less_than_thousand(n: int) -> str:
+def _less_than_thousand(n):
     """n: 1-999"""
     (tens, ones) = divmod(n, 10)
     (hundreds, tens) = divmod(tens, 10)
@@ -84,7 +84,7 @@ def _less_than_thousand(n: int) -> str:
             parts.append(_less_than_ten(ones))
     return "".join(parts)
 
-def _power_of_thousand(multiple: int, exponent: int) -> str:
+def _power_of_thousand(multiple, exponent):
     """multiple: 1...999, exponent: 1 or 3"""
     parts = []
     if multiple > 1:
@@ -92,7 +92,7 @@ def _power_of_thousand(multiple: int, exponent: int) -> str:
     parts.append(POWERS_OF_THOUSAND[exponent][0 if multiple == 1 else 1])
     return ("" if exponent == 1 else " ").join(parts)
 
-def _less_than_million(n: int) -> str:
+def _less_than_million(n):
     """n: 1-999_999"""
     (thousands, ones) = divmod(n, 1000)
     parts = []
@@ -102,7 +102,7 @@ def _less_than_million(n: int) -> str:
         parts.append(_less_than_thousand(ones))
     return " ".join(parts)
 
-def _power_of_million(multiple: int, exponent: int) -> str:
+def _power_of_million(multiple, exponent):
     """multiple: 1...999_999, exponent: 1 or greater"""
     parts = []
     if multiple > 1:
@@ -113,7 +113,7 @@ def _power_of_million(multiple: int, exponent: int) -> str:
     )
     return " ".join(parts)
 
-def _power_of_million_with_exceptions(multiple: int, exponent: int) -> str:
+def _power_of_million_with_exceptions(multiple, exponent):
     """multiple: 1-999_999, exponent: 0 or greater"""
     parts = []
     if exponent == 1:
@@ -127,7 +127,7 @@ def _power_of_million_with_exceptions(multiple: int, exponent: int) -> str:
             parts.append(_less_than_million(multiple))
     return " ".join(parts)
 
-def _Finnish_positive_integer(n: int) -> str:
+def _Finnish_positive_integer(n):
     """Format a positive integer."""
     # split to powers of million (smallest first)
     powers = []
@@ -143,7 +143,7 @@ def _Finnish_positive_integer(n: int) -> str:
     # return in correct order (largest first)
     return " ".join(reversed(powers))
 
-def Finnish_integer(n: int) -> str:
+def Finnish_integer(n):
     """Format a Finnish integer."""
     parts = []
     if n < 0:
