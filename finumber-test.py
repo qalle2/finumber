@@ -1,5 +1,6 @@
 """Tests for finumber.py"""
 
+import sys
 import finumber
 
 TESTS = {
@@ -122,6 +123,7 @@ TESTS = {
 
     10_000_000_000: "kymmenen miljardia",
     10_000_000_001: "kymmenen miljardia yksi",
+    11_000_000_000: "yksitoista miljardia",
     20_000_000_000: "kaksikymmentä miljardia",
 
     100_000_000_000: "sata miljardia",
@@ -151,6 +153,7 @@ TESTS = {
 
     10_000_000_000_000: "kymmenen biljoonaa",
     10_000_000_000_001: "kymmenen biljoonaa yksi",
+    11_000_000_000_000: "yksitoista biljoonaa",
     20_000_000_000_000: "kaksikymmentä biljoonaa",
 
     100_000_000_000_000: "sata biljoonaa",
@@ -160,18 +163,6 @@ TESTS = {
     1_000_000_000_000_000: "tuhat biljoonaa",
     1_000_000_000_000_001: "tuhat biljoonaa yksi",
     1_001_000_000_000_000: "tuhat yksi biljoonaa",
-    2_000_000_000_000_000: "kaksituhatta biljoonaa",
-
-    10_000_000_000_000: "kymmenen biljoonaa",
-    10_000_000_000_001: "kymmenen biljoonaa yksi",
-    20_000_000_000_000: "kaksikymmentä biljoonaa",
-
-    100_000_000_000_000: "sata biljoonaa",
-    100_000_000_000_001: "sata biljoonaa yksi",
-    200_000_000_000_000: "kaksisataa biljoonaa",
-
-    1_000_000_000_000_000: "tuhat biljoonaa",
-    1_000_000_000_000_001: "tuhat biljoonaa yksi",
     2_000_000_000_000_000: "kaksituhatta biljoonaa",
 
     10_000_000_000_000_000: "kymmenentuhatta biljoonaa",
@@ -195,14 +186,16 @@ TESTS = {
 }
 
 def main():
+    """The main function."""
+
     for n in sorted(TESTS):
         result = finumber.Finnish_integer(n)
         correctResult = TESTS[n]
         if result != correctResult:
-            print("Incorrect result for {:d}:".format(n))
-            print('Expected: "{:s}"'.format(correctResult))
-            print('Got     : "{:s}"'.format(result))
-            exit(1)
+            print("Incorrect result for {:d}:".format(n), file=sys.stderr)
+            print('Expected: "{:s}"'.format(correctResult), file=sys.stderr)
+            print('Got     : "{:s}"'.format(result), file=sys.stderr)
+            sys.exit(1)
     print("All tests passed.")
 
 if __name__ == "__main__":
