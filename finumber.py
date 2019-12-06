@@ -1,193 +1,132 @@
+"""Print an integer in Finnish."""
+
 import sys
 
-# less than nothing
-MINUS = "miinus"
-
-# nothing
-ZERO = "nolla"
-
-# positive integers smaller than the radix
-DIGITS = {
-    1: "yksi",
-    2: "kaksi",
-    3: "kolme",
-    4: "neljä",
-    5: "viisi",
-    6: "kuusi",
-    7: "seitsemän",
-    8: "kahdeksan",
-    9: "yhdeksän",
-}
-
-# for the irregular numbers 11-19
-SECOND_TEN = "toista"
-
-# small powers of the radix (nominative/partitive)
-POWERS_OF_TEN = {
-    1: ("kymmenen", "kymmentä"),
-    2: ("sata", "sataa"),
-}
-
-# small powers of thousand (nominative/partitive)
-POWERS_OF_THOUSAND = {
-    1: ("tuhat", "tuhatta"),
-    3: ("miljardi", "miljardia"),
-}
-
-# prefixes for powers of million
-POWERS_OF_MILLION = {
-    1: "m",
-    2: "b",
-    3: "tr",
-    4: "kvadr",
-    5: "kvint",
-    6: "sekst",
-    7: "sept",
-    8: "okt",
-    9: "nov",  # or "non"
-    10: "dek",
-    11: "undek",
-    12: "duodek",
-    13: "tredek",
-    14: "kvattuordek",
-    15: "kvindek",
-    16: "sedek",
-    17: "septendek",
-    18: "duodevigint",
-    19: "undevigint",
-    20: "vigint",
-}
-
-# suffixes for powers of million (nominative/partitive)
-POWERS_OF_MILLION_ENDINGS = ("iljoona", "iljoonaa")
-
 def less_than_ten(n):
-    """Format 1...9."""
+    """Format 1-9."""
 
-    return DIGITS[n]
-
-def power_of_ten(multiple, exponent):
-    """Format multiple * 10**exponent.
-    multiple: 1...9, exponent: 1...2"""
-
-    parts = []
-    if multiple > 1:
-        parts.append(less_than_ten(multiple))
-    parts.append(POWERS_OF_TEN[exponent][0 if multiple == 1 else 1])
-    return "".join(parts)
+    digits = (  # "one" to "nine"
+        "yksi", "kaksi", "kolme", "neljä", "viisi", "kuusi", "seitsemän", "kahdeksan", "yhdeksän"
+    )
+    return digits[n-1]
 
 def less_than_thousand(n):
-    """Format 1...999."""
+    """Format 1-999."""
 
     (tens, ones) = divmod(n, 10)
     (hundreds, tens) = divmod(tens, 10)
     parts = []
-
     if hundreds:
-        parts.append(power_of_ten(hundreds, 2))
-
-    if tens == 1 and ones:
-        parts.append(less_than_ten(ones))
-        parts.append(SECOND_TEN)
+        parts.append(less_than_ten(hundreds) + "sataa" if hundreds > 1 else "sata")
+    if tens == 1:
+        parts.append(less_than_ten(ones) + "toista" if ones else "kymmenen")
     else:
         if tens:
-            parts.append(power_of_ten(tens, 1))
+            parts.append(less_than_ten(tens) + "kymmentä")
         if ones:
             parts.append(less_than_ten(ones))
-
     return "".join(parts)
 
-def power_of_thousand(multiple, exponent):
-    """Format multiple * 1_000**exponent.
-    multiple: 1...999, exponent: 1 or 3"""
-
-    parts = []
-    if multiple > 1:
-        parts.append(less_than_thousand(multiple))
-    parts.append(POWERS_OF_THOUSAND[exponent][0 if multiple == 1 else 1])
-    separator = "" if exponent == 1 else " "
-
-    return separator.join(parts)
-
 def less_than_million(n):
-    """Format 1...999_999."""
+    """Format 1-999_999."""
 
     (thousands, ones) = divmod(n, 1000)
     parts = []
-    if thousands:
-        parts.append(power_of_thousand(thousands, 1))
+    if thousands > 1:
+        parts.append(less_than_thousand(thousands) + "tuhatta")
+    elif thousands == 1:
+        parts.append("tuhat")
     if ones:
         parts.append(less_than_thousand(ones))
-
     return " ".join(parts)
 
 def power_of_million(multiple, exponent):
     """Format multiple * 1_000_000**exponent.
-    multiple: 1...999_999, exponent: 0 or greater"""
+    multiple: 1-999_999, exponent: 0-20"""
 
-    parts = []
+    # prefixes for 10 ** (6n)
+    powersOfMillion = (
+        "m",            #  1
+        "b",            #  2
+        "tr",           #  3
+        "kvadr",        #  4
+        "kvint",        #  5
+        "sekst",        #  6
+        "sept",         #  7
+        "okt",          #  8
+        "nov",          #  9 (alternatively "non")
+        "dek",          # 10
+        "undek",        # 11
+        "duodek",       # 12
+        "tredek",       # 13
+        "kvattuordek",  # 14
+        "kvindek",      # 15
+        "sedek",        # 16
+        "septendek",    # 17
+        "duodevigint",  # 18
+        "undevigint",   # 19
+        "vigint",       # 20
+    )
 
-    # separate the 1_000_000_000s if necessary
+    if exponent == 0:
+        return less_than_million(multiple)
     if exponent == 1:
-        (thousands, multiple) = divmod(multiple, 1000)
-        if thousands:
-            parts.append(power_of_thousand(thousands, 3))
-
-    if multiple:
-        # format multiple
-        if not exponent or multiple > 1:
-            parts.append(less_than_million(multiple))
-
-        # format power of million (prefix + suffix)
-        if exponent:
-            parts.append(
-                POWERS_OF_MILLION[exponent]
-                + POWERS_OF_MILLION_ENDINGS[int(multiple > 1)]
-            )
-
+        # 1_000_000 to 999_999_000_000 (here "billion" = 10 ** 9)
+        (billions, millions) = divmod(multiple, 1000)
+        parts = []
+        if billions > 1:
+            parts.append(less_than_thousand(billions) + " miljardia")
+        elif billions == 1:
+            parts.append("miljardi")
+        if millions > 1:
+            parts.append(less_than_million(millions) + " miljoonaa")
+        elif millions == 1:
+            parts.append("miljoona")
+        return " ".join(parts)
+    parts = []
+    if multiple > 1:
+        parts.append(less_than_million(multiple))
+        parts.append(powersOfMillion[exponent-1] + "iljoonaa")
+    else:
+        parts.append(powersOfMillion[exponent-1] + "iljoona")
     return " ".join(parts)
 
 def positive_integer(n):
     """Format a positive integer."""
 
     # split to powers of million (smallest first)
-    powers = []
+    powersOfMillion = []
     while n:
         (n, remainder) = divmod(n, 10**6)
-        powers.append(remainder)
-
+        powersOfMillion.append(remainder)
     # format each nonzero power
-    powers = [
+    powersOfMillion = [
         power_of_million(multiple, exponent)
-        for (exponent, multiple) in enumerate(powers)
-        if multiple
+        for (exponent, multiple) in enumerate(powersOfMillion) if multiple
     ]
-
     # return in correct order (largest first)
-    return " ".join(reversed(powers))
+    return " ".join(reversed(powersOfMillion))
 
 def Finnish_integer(n):
     """Format a Finnish integer."""
 
     if n == 0:
-        return ZERO
-
-    return (MINUS + " " if n < 0 else "") + positive_integer(abs(n))
+        return "nolla"
+    return ("miinus " if n < 0 else "") + positive_integer(abs(n))
 
 def main():
+    """The main function."""
+
     if len(sys.argv) != 2:
-        exit("Syntax error. See the readme file.")
+        sys.exit("Invalid number of command line arguments.")
 
     n = sys.argv[1].replace(" ", "")
-
     try:
         n = int(n, 10)
     except ValueError:
-        exit("Error: not an integer.")
-
-    if abs(n) >= 10 ** (max(POWERS_OF_MILLION) * 6 + 6):
-        exit("Error: the number is too small or too large.")
-
+        sys.exit("The command line argument is not an integer.")
+    if abs(n) >= 10 ** 126:
+        sys.exit("The number is too small or too large.")
     print(Finnish_integer(n))
 
 if __name__ == "__main__":
