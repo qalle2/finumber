@@ -117,6 +117,9 @@ def Finnish_integer(n):
 def main():
     """The main function."""
 
+    if sys.version_info[0] != 3:
+        print("Warning: possibly incompatible Python version.", file=sys.stderr)
+
     if len(sys.argv) != 2:
         sys.exit("Invalid number of command line arguments.")
 
